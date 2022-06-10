@@ -1,8 +1,8 @@
 Name:           lensfun
 Version:        0.3.2
-Release:        20
+Release:        21
 Summary:        Library to correct defects introduced by photographic lenses
-License:        LGPLv3 and CC-BY-SA
+License:        LGPLv3 and CC-BY-SA-3.0
 URL:            http://lensfun.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 
@@ -114,6 +114,9 @@ cd -
 %{_mandir}/man1/lensfun-update-data.1*
 
 %changelog
+* Tue Jun 7 2022 Chenyx <chenyixiong3@huawei.com> - 0.3.2-21
+- License compliance rectification
+
 * Fri Jan 14 2022 xu_ping <xuping33@huawei.com> - 0.3.2-20
 - Packaging svg files
 
