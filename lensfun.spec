@@ -1,6 +1,6 @@
 Name:           lensfun
 Version:        0.3.2
-Release:        21
+Release:        22
 Summary:        Library to correct defects introduced by photographic lenses
 License:        LGPLv3 and CC-BY-SA-3.0
 URL:            http://lensfun.sourceforge.net/
@@ -15,7 +15,7 @@ Patch0006:      Added-std-namespace-to-isnan.patch
 Patch0007:      Pull-isnan-into-std-namespace-include-cmath-not-math.patch
 
 BuildRequires:  cmake >= 2.8 doxygen gcc-c++ pkgconfig(glib-2.0) pkgconfig(libpng)
-BuildRequires:  python3-docutils pkgconfig(zlib) python3 python3-devel
+BuildRequires:  python3-docutils pkgconfig(zlib) python3
 
 %description
 The lensfun library provides an open source database of photographic lenses and
@@ -114,6 +114,9 @@ cd -
 %{_mandir}/man1/lensfun-update-data.1*
 
 %changelog
+* Thu Jul 21 2022 liyanan <liyanan32@h-partners.com> - 0.3.2-22
+- Remove unneeded dependencies python3-devel
+
 * Tue Jun 7 2022 Chenyx <chenyixiong3@huawei.com> - 0.3.2-21
 - License compliance rectification
 
