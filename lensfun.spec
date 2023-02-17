@@ -1,6 +1,6 @@
 Name:           lensfun
 Version:        0.3.2
-Release:        22
+Release:        23
 Summary:        Library to correct defects introduced by photographic lenses
 License:        LGPLv3 and CC-BY-SA-3.0
 URL:            http://lensfun.sourceforge.net/
@@ -103,8 +103,7 @@ cd -
 %{_libdir}/pkgconfig/lensfun.pc
 
 %files -n python3-lensfun
-%{python3_sitelib}/lensfun/
-%{python3_sitelib}/lensfun*.egg-info
+%{python3_sitelib}/lensfun*
 
 %files tools
 %{_bindir}/{lensfun-add-adapter,lensfun-update-data}
@@ -114,6 +113,9 @@ cd -
 %{_mandir}/man1/lensfun-update-data.1*
 
 %changelog
+* Fri Feb 17 2023 yaoxin <yaoxin30@h-partners.com> - 0.3.2-23
+- Fix build failed
+
 * Thu Jul 21 2022 liyanan <liyanan32@h-partners.com> - 0.3.2-22
 - Remove unneeded dependencies python3-devel
 
