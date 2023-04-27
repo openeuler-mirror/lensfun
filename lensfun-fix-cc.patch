@@ -1,0 +1,44 @@
+--- a/libs/lensfun/cpuid.cpp	2023-04-26 15:42:18.899917418 +0800
++++ b/libs/lensfun/cpuid.cpp	2023-04-26 15:43:10.188170831 +0800
+@@ -92,9 +92,9 @@
+ {
+ #define cpuid(cmd) \
+     __asm volatile ( \
+-        "push %%"R_BX"\n" \
++        "push %%" R_BX "\n" \
+         "cpuid\n" \
+-        "pop %%"R_BX"\n" \
++        "pop %%" R_BX "\n" \
+        : "=a" (ax), "=c" (cx),  "=d" (dx) \
+        : "0" (cmd))
+ 
+
+--- a/tests/CMakeLists.txt	2023-04-26 15:37:33.834508914 +0800
++++ b/tests/CMakeLists.txt	2023-04-26 15:38:25.690765135 +0800
+@@ -7,7 +7,11 @@
+ ADD_TEST(Modifier test_modifier)
+ 
+ find_package(OpenMP)
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
++if(OPENMP_FOUND)
++    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
++else()
++    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
++endif()
+ 
+ ADD_EXECUTABLE(test_modifier_color test_modifier_color.cpp)
+ TARGET_LINK_LIBRARIES(test_modifier_color lensfun ${COMMON_LIBS})
+
+--- a/tests/test_modifier.cpp	2023-04-26 16:08:33.934752501 +0800
++++ b/tests/test_modifier.cpp	2023-04-26 16:10:01.383065560 +0800
+@@ -77,8 +77,8 @@
+ // check if output becomes NaN when processing geometry conversion
+ void test_mod_projection_borders(lfFixture* lfFix, gconstpointer data)
+ {
+-    float in[2]  = {lfFix->img_width, lfFix->img_height};
+-    float in2[2] = {(lfFix->img_width-1)/2, (lfFix->img_height-1)/2};
++    float in[2]  = {float(lfFix->img_width), float(lfFix->img_height)};
++    float in2[2] = {float((lfFix->img_width-1)/2), float((lfFix->img_height-1)/2)};
+     float res[2] = {0, 0};
+ 
+     lfLensType geom_types [] = {LF_RECTILINEAR, LF_PANORAMIC, LF_EQUIRECTANGULAR, LF_FISHEYE_STEREOGRAPHIC, LF_FISHEYE, LF_FISHEYE_EQUISOLID, LF_FISHEYE_ORTHOGRAPHIC, LF_FISHEYE_THOBY, LF_UNKNOWN};
